@@ -2,6 +2,10 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+// Components
+
+import Greet from './components/Greet'
+
 function App() {
   return (
     <div className="App">
@@ -18,6 +22,8 @@ function App() {
         >
           Learn React
         </a>
+        <Greet firstName = 'Nitz' lastName= 'Villa'/>
+        <Greet firstName = 'Mels' lastName= 'Castillo'/>
       </header>
     </div>
   );
