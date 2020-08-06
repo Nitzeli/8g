@@ -10,8 +10,10 @@ class Clock extends Component {
       date: new Date().toLocaleTimeString(),
       color: "danger",
       counter: 1,
+      colorChange: true,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.changeColor = this.changeColor.bind(this);
   }
   componentDidMount() {
     setInterval(() => {
@@ -23,8 +25,8 @@ class Clock extends Component {
   }
 
   handleClick() {
-    console.log("me clickearon desde un método !!");
-    console.log(this);
+    //   console.log("me clickearon desde un método !!");
+    //   console.log(this);
     let { counter } = this.state;
     counter = counter + 1;
     this.setState({
@@ -32,18 +34,27 @@ class Clock extends Component {
     });
   }
 
+  changeColor() {
+    this.setState({ colorChange: !this.state.colorChange });
+  }
+
   render() {
+    let newColor = !this.state.colorChange ? "warning" : "primary";
+
     return (
       <>
         <h1>
           <Badge color={this.state.color}>{this.state.date}</Badge>
         </h1>
+
         <Container>
           <p>
             {" "}
             <Badge color="primary">{this.state.counter}</Badge>
-            <Button onClick={this.handleClick}>Add</Button>
           </p>
+          <Button color={newColor} onClick={this.changeColor}>
+            Add
+          </Button>
         </Container>
         <h2>{this.state.date}</h2>
       </>
