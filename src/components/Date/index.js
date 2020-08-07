@@ -33,7 +33,10 @@ class Clock extends Component {
       counter,
     });
   }
-
+  componentDidUpdate() {
+    console.log("actualización");
+    
+  }
   changeColor() {
     this.setState({ colorChange: !this.state.colorChange });
   }

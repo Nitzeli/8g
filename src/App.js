@@ -9,6 +9,8 @@ import ClassGreet from "./components/ClassGreet";
 import Post from "./components/Post";
 import { Container, CardColumns } from "reactstrap";
 import Clock from "./components/Date";
+import SwitchExample from "./components/SwitchExample";
+import List from "./components/List";
 
 function App() {
   return (
@@ -28,8 +30,9 @@ function App() {
         </a>
         <FunctionGreet firstName="Nitz" lastName="Villa" />
         <ClassGreet firstName="Otra vez Nitz" lastName=":3 " />
-
+        <SwitchExample />
         <Clock />
+        <List />
       </header>
       <CardColumns>
         <Post
