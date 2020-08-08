@@ -17,7 +17,7 @@ const cards = [
   {
     position: 1,
     CardImg:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUrzZ6US-8sKq5O3XBhIxjkBtGAhnLEeRokw&usqp=CAU",
+      "https://erjobarcelona.com/wp-content/uploads/2016/11/P.TERR-11-Campo-azul-de-flores-400x400.jpg",
     CardTitle: "My Black Friend Corrected ",
     CardSubtitle: "Unwittingly Racist Statement",
     CardText:
@@ -26,7 +26,7 @@ const cards = [
   {
     position: 2,
     CardImg:
-      "https://4.bp.blogspot.com/-pyAjnCVwSgs/TkNeqts_uEI/AAAAAAAABNI/tHSrhnYUxLw/s400/rosas1.jpg",
+      "https://laesquinitadelscrap.com/wp-content/uploads/2020/03/sparkle-florettes-boho-vibes-flores-LITTLE-BIRDIE-scrapbook-La-esquinita-del-scrap-M%C3%A9xico-2-400x400.jpg",
     CardTitle: "And that quirk is how I found out I was using",
     CardSubtitle: "Then I learned it had a toxic history",
     CardText:
@@ -35,7 +35,7 @@ const cards = [
   {
     position: 3,
     CardImg:
-      "https://www.jardineriaon.com/wp-content/uploads/2018/04/flores-decorativas-y-vistosas.jpg",
+      "https://www.bourguignonfloristas.es/media/wysiwyg/campos-tulipanes.jpg",
     CardTitle: "racist language without realizing it.",
     CardSubtitle: "Then I learned it had a toxic history",
     CardText:
@@ -44,7 +44,23 @@ const cards = [
 ];
 
 class Post extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activePost: true,
+    };
+    this.handleShowListClick = this.handleShowListClick.bind(this);
+  }
+
+  handleShowListClick() {
+    const { activePost } = this.state;
+    this.setState({
+      activePost: !activePost,
+    });
+  }
+
   render() {
+    const { activePost } = this.state;
     const UICards = cards.map((cards) => {
       const upperTittle = cards.CardTitle.toUpperCase();
       return (
@@ -59,14 +75,24 @@ class Post extends Component {
           <CardBody>
             <CardTitle> {upperTittle}</CardTitle>
             <CardSubtitle>{cards.CardSubtitle}</CardSubtitle>
-            <CardText>{cards.CardText}</CardText>
-            <Button>Read More</Button>
+            <CardText
+              onClick={this.handleListItemClick}
+              key={cards.CardText}
+              className="postArticle"
+            ></CardText>
           </CardBody>
         </Card>
       );
     });
 
-    return <CardGroup>{UICards}</CardGroup>;
+    return (
+      <CardGroup>
+        {UICards}
+        <Button onClick={this.handleShowListClick}>
+          {activePost ? "Hide list" : "Show List"}
+        </Button>
+      </CardGroup>
+    );
   }
 }
 export default Post;
