@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 
+// Components
+import Input from "../../components/Input";
+
+// CSS
+import "./CurrencyConverter.css";
+
 class CurrencyConverter extends Component {
   constructor(props) {
     super(props);
@@ -7,22 +13,23 @@ class CurrencyConverter extends Component {
       quantityMXN: 0,
       quantityDLS: 0,
     };
+    this.handleCurrencyInput = this.handleCurrencyInput.bind(this);
   }
 
-  handleCurrencyInput({ target: { name, value } }) {
-    console.log(name, value);
+  handleCurrencyInput(name, value) {
     let mxn, dls;
+    console.log(name, value);
     if (name === "quantityMXN") {
       mxn = value;
-      dls = mxn * 22.42;
+      dls = mxn / 22.42;
     } else {
       dls = value;
-      mxn = dls / 22.42;
+      mxn = dls * 22.24;
     }
-    this.setState {
+    this.setState({
       quantityMXN: mxn,
-      quantityDLS: dls
-    }
+      quantityDLS: dls,
+    });
   }
 
   render() {
@@ -30,19 +37,17 @@ class CurrencyConverter extends Component {
     return (
       <div>
         <form>
-          <input
+          <Input
             type="number"
             name="quantityMXN"
             value={quantityMXN}
-            onChange={this.handleCurrencyInput}
-            placeholder= "MXN"
+            callback={this.handleCurrencyInput}
           />
-          <input
+          <Input
             type="number"
             name="quantityDLS"
             value={quantityDLS}
-            onChange={this.handleCurrencyInput}
-            placeholder= "DLS"
+            callback={this.handleCurrencyInput}
           />
         </form>
       </div>
